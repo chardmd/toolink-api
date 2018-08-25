@@ -1,8 +1,8 @@
 {
-  "body": "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}",
+  "body": "{\"categoryName\":\"Tools\"}",
   "requestContext": {
     "identity": {
-      "cognitoIdentityId": "USER-SUB-1234"
+      "cognitoIdentityId": "us-east-1:4e5318e1-73e1-4f80-8b3d-65a728ec5abd"
     }
   }
 }

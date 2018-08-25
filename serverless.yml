@@ -35,8 +35,8 @@ provider:
   environment:
     categoryTable:
       Ref: CategoryTable
-    stripeSecretKey: ${self:custom.environment.stripeSecretKey}
-
+    STRIPE_SECRET_KEY: ${self:custom.environment.STRIPE_SECRET_KEY}
+    CATEGORY_TABLE_NAME: ${self:custom.environment.CATEGORY_TABLE_NAME}
 
   iamRoleStatements:
     - Effect: Allow
