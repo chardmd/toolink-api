@@ -3,7 +3,7 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context, callback) {
   const params = {
-    TableName: process.env.notesTable,
+    TableName: process.env.categoryTable,
     // 'KeyConditionExpression' defines the condition for the query
     // - 'userId = :userId': only return items with matching 'userId'
     //   partition key

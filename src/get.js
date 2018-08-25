@@ -3,13 +3,13 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context, callback) {
   const params = {
-    TableName: process.env.notesTable,
+    TableName: process.env.categoryTable,
     // 'Key' defines the partition key and sort key of the item to be retrieved
     // - 'userId': Identity Pool identity id of the authenticated user
-    // - 'noteId': path parameter
+    // - 'categoryId': path parameter
     Key: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: event.pathParameters.id
+      categoryId: event.pathParameters.id
     }
   };
 

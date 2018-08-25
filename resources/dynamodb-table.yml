@@ -1,35 +1,19 @@
 Resources:
-  NotesTable:
+  CategoryTable:
     Type: AWS::DynamoDB::Table
     Properties:
       # Generate a name based on the stage
-      TableName: ${self:custom.stage}-notes
+      TableName: ${self:custom.stage}-categories
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
-        - AttributeName: noteId
+        - AttributeName: categoryId
           AttributeType: S
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
-        - AttributeName: noteId
+        - AttributeName: categoryId
           KeyType: RANGE
-      # Set the capacity based on the stage
-      ProvisionedThroughput:
-        ReadCapacityUnits: ${self:custom.tableThroughput}
-        WriteCapacityUnits: ${self:custom.tableThroughput}
-  # Create User Table
-  UsersTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      # Generate a name based on the stage
-      TableName: ${self:custom.stage}-users
-      AttributeDefinitions:
-        - AttributeName: userId
-          AttributeType: S
-      KeySchema:
-        - AttributeName: userId
-          KeyType: HASH
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
