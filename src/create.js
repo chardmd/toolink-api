@@ -8,9 +8,8 @@ export async function main(event, context, callback) {
     TableName: process.env.categoryTable,
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: uuid.v1(),
-      content: data.content,
-      attachment: data.attachment,
+      categoryId: uuid.v1(),
+      name: data.name,
       createdAt: Date.now()
     }
   };
