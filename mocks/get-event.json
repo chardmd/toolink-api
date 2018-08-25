@@ -1,0 +1,10 @@
+{
+  "pathParameters": {
+    "id": "429d2f40-6c6e-11e8-9eb2-7dfdb34984de"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

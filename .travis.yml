@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - node
+cache:
+  directories:
+    - node_modules
+script: 
+  - npm run test
+  - npm install -g serverless
+deploy:
+  # deploy dev to the staging environment
+  - provider: script
+    script: bash ./deploy.sh
+    skip_cleanup: true # do not delete the built assets
+    env:
+      # travis encrypt key=value
+      - secure: "c6wK2I2pI70NYVw30SbPmSAuPT1lfzECU0cVJXvYKO8XsmvPSk6ASIPmCa9qMfe4fJxBzCPY++m57pvk3LmEXi8IrS+NuOaCV++fTj2BoW9lEVaiNFJbyQYMDl5pQDOtgc9s1PCjbFgPfIXam9hwq6kchHM+xakzK7/MtOBnNrNpKifjSKOrYao126BtQTNbm2KPUamSbd8ffcq/cuzeKH+EU9gXvrG0I65EJ5dEpovvXnTnirOXGZYJch9FkRyliWCpBXErF0idYwWFlLsAfTH+teX/h+30KIKHxkKumTvCdMosnvcAemDMIS3pekfKcJyDyj64Tt9RO74Wtb1HobZ5rj08DcFqnub+ED5UBF9i31e1s3cQLynUw9qyVGkWT4L7jqhHYi+4Bg++Z+A+/EeI8w2w5zcw9icdFw2g0MuWly5YR3itVRvNcyUF5wyUgqvRiYmiaRnbXtIM4VySR6UT2M56xCsxt52pNTl6vkrgQ2Rn5yZcnG3Mu6k3QBHtDG1pL/6m/byrLI6ruZ3SKSt/Up6qFY60wxvy5p0yYvdybj5gIseAhdMCgdzpY7ofIcwMEkCv8xUHF8eWWdTBBo+dnEei9JdOjzxt+jJ+LpIy+N2tA4DoVrwt/VNJANlP/rxhDJmskOQtsfw3+3BFZJv5hU1mTbKhy9zhexYgKl0="
+    on:
+      branch: dev
+  # deploy master to production
+  - provider: script
+    skip_cleanup: true # do not delete the built assets
+    script: bash ./deploy.sh
+    env:
+      # travis encrypt key=value
+      - secure: "c6wK2I2pI70NYVw30SbPmSAuPT1lfzECU0cVJXvYKO8XsmvPSk6ASIPmCa9qMfe4fJxBzCPY++m57pvk3LmEXi8IrS+NuOaCV++fTj2BoW9lEVaiNFJbyQYMDl5pQDOtgc9s1PCjbFgPfIXam9hwq6kchHM+xakzK7/MtOBnNrNpKifjSKOrYao126BtQTNbm2KPUamSbd8ffcq/cuzeKH+EU9gXvrG0I65EJ5dEpovvXnTnirOXGZYJch9FkRyliWCpBXErF0idYwWFlLsAfTH+teX/h+30KIKHxkKumTvCdMosnvcAemDMIS3pekfKcJyDyj64Tt9RO74Wtb1HobZ5rj08DcFqnub+ED5UBF9i31e1s3cQLynUw9qyVGkWT4L7jqhHYi+4Bg++Z+A+/EeI8w2w5zcw9icdFw2g0MuWly5YR3itVRvNcyUF5wyUgqvRiYmiaRnbXtIM4VySR6UT2M56xCsxt52pNTl6vkrgQ2Rn5yZcnG3Mu6k3QBHtDG1pL/6m/byrLI6ruZ3SKSt/Up6qFY60wxvy5p0yYvdybj5gIseAhdMCgdzpY7ofIcwMEkCv8xUHF8eWWdTBBo+dnEei9JdOjzxt+jJ+LpIy+N2tA4DoVrwt/VNJANlP/rxhDJmskOQtsfw3+3BFZJv5hU1mTbKhy9zhexYgKl0="
+    on:
+      branch: master

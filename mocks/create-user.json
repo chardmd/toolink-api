@@ -1,0 +1,8 @@
+{
+    "body": "{\"birthDate\":\"1990-12-12T00:00:00.000Z\",\"lifeSpan\":\"72\",\"isPastActive\": true}",
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "ap-southeast-2:d76abc99-7f61-43ad-bb4f-c593d4abc85b"
+      }
+    }
+  }
