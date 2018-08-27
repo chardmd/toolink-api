@@ -16,7 +16,13 @@ export async function main(event, context, callback) {
 
   try {
     await dynamoDbLib.call("put", params);
-    callback(null, success(params.Item));
+    callback(
+      null,
+      success({
+        categoryId: params.Item.categoryId,
+        categoryName: params.Item.categoryName
+      })
+    );
   } catch (e) {
     console.error(e);
     callback(null, failure({ status: false }));
