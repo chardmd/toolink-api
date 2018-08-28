@@ -5,7 +5,7 @@ import { success, failure } from "../../../libs/response-lib";
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: process.env.CATEGORY_TABLE_NAME,
+    TableName: process.env.TABLE_NAME,
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       categoryId: uuid.v1(),

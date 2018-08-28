@@ -23,8 +23,7 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    tableName:
-      'Fn::ImportValue': ${self:custom.stage}-CategoriesTable
+    TABLE_NAME: ${self:custom.stage}-categories
 
   iamRoleStatements:
     - Effect: Allow
