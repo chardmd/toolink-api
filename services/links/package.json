@@ -27,8 +27,23 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "source-map-support": "^0.4.18",
-    "stripe": "^6.1.1",
+    "got": "^8.3.2",
+    "metascraper": "^4.0.1",
+    "metascraper-amazon": "^4.0.2",
+    "metascraper-author": "^4.0.2",
+    "metascraper-clearbit-logo": "^4.0.2",
+    "metascraper-date": "^4.0.2",
+    "metascraper-description": "^4.0.2",
+    "metascraper-image": "^4.0.2",
+    "metascraper-logo": "^4.0.2",
+    "metascraper-logo-favicon": "^4.0.2",
+    "metascraper-publisher": "^4.0.3",
+    "metascraper-soundcloud": "^4.0.2",
+    "metascraper-title": "^4.0.2",
+    "metascraper-url": "^4.0.2",
+    "metascraper-video": "^4.0.2",
+    "metascraper-video-provider": "^4.0.2",
+    "metascraper-youtube": "^4.0.2",
     "uuid": "^3.2.1"
   }
 }
