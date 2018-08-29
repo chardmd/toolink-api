@@ -1,0 +1,11 @@
+{
+  "body": "{\"categoryName\":\"Indie Hackers\"}",
+  "pathParameters": {
+    "id": "3a532090-a870-11e8-99c6-51f425f772dc"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "us-east-1:4e5318e1-73e1-4f80-8b3d-65a728ec5abd"
+    }
+  }
+}
