@@ -18,6 +18,7 @@ provider:
 
 resources:
   Resources:
+    # Categories Table
     CategoriesTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -37,6 +38,26 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: ${self:custom.tableThroughput}
           WriteCapacityUnits: ${self:custom.tableThroughput}
+    # Links Table
+    LinksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        # Generate a name based on the stage
+        TableName: ${self:custom.stage}-links
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: linkId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: linkId
+            KeyType: RANGE
+        # Set the capacity based on the stage
+        ProvisionedThroughput:
+          ReadCapacityUnits: ${self:custom.tableThroughput}
+          WriteCapacityUnits: ${self:custom.tableThroughput}         
 
   Outputs:
     CategoriesTableArn:
@@ -45,10 +66,24 @@ resources:
           - CategoriesTable
           - Arn
       Export:
-        Name: ${self:custom.stage}-CategoriesTableArn
+        Name: ${self:custom.stage}-CategoriesTableArn 
 
     CategoriesTableName:
       Value:
         Ref: CategoriesTable
       Export:
         Name: ${self:custom.stage}-CategoriesTable
+
+    LinksTableArn:
+      Value:
+         Fn::GetAtt:
+          - LinksTable
+          - Arn
+      Export:
+        Name: ${self:custom.stage}-LinksTableArn
+
+    LinksTableName:
+      Value:
+        Ref: LinksTable
+      Export:
+        Name: ${self:custom.stage}-LinksTable
