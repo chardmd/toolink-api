@@ -41,6 +41,7 @@ export async function main(event, context, callback) {
       TableName: process.env.TABLE_NAME,
       Item: {
         userId: event.requestContext.identity.cognitoIdentityId,
+        categoryId: data.categoryId,
         linkId: uuid.v1(),
         author: metadata.author,
         description: metadata.description,
