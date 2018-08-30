@@ -1,5 +1,7 @@
 const urlParser = require("url");
 const got = require("got");
+import uuid from "uuid";
+import * as dynamoDbLib from "../../../libs/dynamodb-lib";
 import { success, failure } from "../../../libs/response-lib";
 
 const metascraper = require("metascraper")([
@@ -34,6 +36,27 @@ export async function main(event, context, callback) {
   try {
     const { body: html, url } = await got(data.url);
     const metadata = await metascraper({ html, url });
+
+    const params = {
+      TableName: process.env.TABLE_NAME,
+      Item: {
+        userId: event.requestContext.identity.cognitoIdentityId,
+        linkId: uuid.v1(),
+        author: metadata.author,
+        description: metadata.description,
+        image: metadata.image,
+        logo: metadata.logo,
+        publisher: metadata.publisher,
+        title: metadata.title,
+        url: metadata.url,
+        lang: metadata.lang,
+        video: metadata.video,
+        createdAt: Date.now()
+      }
+    };
+
+    await dynamoDbLib.call("put", params);
+
     // Return the retrieved item
     callback(null, success(metadata));
   } catch (e) {
