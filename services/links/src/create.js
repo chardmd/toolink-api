@@ -54,7 +54,7 @@ export async function main(event, context, callback) {
         userId: event.requestContext.identity.cognitoIdentityId,
         categoryId: data.categoryId,
         linkId: uuid.v1(),
-        ...subMeta,
+        ...metadata,
         createdAt: Date.now()
       }
     };
