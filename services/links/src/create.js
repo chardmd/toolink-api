@@ -48,7 +48,7 @@ export async function main(event, context, callback) {
         logo: metadata.logo,
         publisher: metadata.publisher,
         title: metadata.title,
-        url: metadata.url,
+        urlText: metadata.url,
         lang: metadata.lang,
         video: metadata.video,
         createdAt: Date.now()
