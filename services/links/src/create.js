@@ -37,6 +37,7 @@ export async function main(event, context, callback) {
     const { body: html, url } = await got(data.url);
     let metadata = await metascraper({ html, url });
     metadata = {
+      categoryId: data.categoryId,
       author: metadata.author,
       description: metadata.description,
       image: metadata.image,
@@ -51,9 +52,8 @@ export async function main(event, context, callback) {
     const params = {
       TableName: process.env.TABLE_NAME,
       Item: {
-        userId: event.requestContext.identity.cognitoIdentityId,
-        categoryId: data.categoryId,
         linkId: uuid.v1(),
+        userId: event.requestContext.identity.cognitoIdentityId,
         ...metadata,
         createdAt: Date.now()
       }

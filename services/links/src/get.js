@@ -9,8 +9,8 @@ export async function main(event, context, callback) {
     // - 'linkId': path parameter
     ProjectionExpression: "linkId, categoryName",
     Key: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      linkId: event.pathParameters.id
+      linkId: event.pathParameters.id,
+      userId: event.requestContext.identity.cognitoIdentityId
     }
   };
 

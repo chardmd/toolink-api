@@ -29,7 +29,7 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    TABLE_NAME: ${self:custom.stage}-links
+    TABLE_NAME: ${self:custom.stage}-table-links
 
   iamRoleStatements:
     - Effect: Allow
@@ -79,7 +79,7 @@ functions:
     handler: src/list.main
     events:
       - http:
-          path: links
+          path: links/categories/{categoryId}
           method: get
           cors: true
           authorizer: aws_iam

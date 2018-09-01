@@ -23,16 +23,16 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         # Generate a name based on the stage
-        TableName: ${self:custom.stage}-categories
+        TableName: ${self:custom.stage}-table-categories
         AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
           - AttributeName: categoryId
+            AttributeType: S
+          - AttributeName: userId
             AttributeType: S
         KeySchema:
-          - AttributeName: userId
-            KeyType: HASH
           - AttributeName: categoryId
+            KeyType: HASH
+          - AttributeName: userId
             KeyType: RANGE
         # Set the capacity based on the stage
         ProvisionedThroughput:
@@ -43,16 +43,16 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         # Generate a name based on the stage
-        TableName: ${self:custom.stage}-links
+        TableName: ${self:custom.stage}-table-links
         AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
           - AttributeName: linkId
+            AttributeType: S
+          - AttributeName: userId
             AttributeType: S
         KeySchema:
-          - AttributeName: userId
-            KeyType: HASH
           - AttributeName: linkId
+            KeyType: HASH
+          - AttributeName: userId
             KeyType: RANGE
         # Set the capacity based on the stage
         ProvisionedThroughput:

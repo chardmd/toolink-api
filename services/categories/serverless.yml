@@ -23,7 +23,7 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    TABLE_NAME: ${self:custom.stage}-categories
+    TABLE_NAME: ${self:custom.stage}-table-categories
 
   iamRoleStatements:
     - Effect: Allow
