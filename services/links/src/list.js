@@ -11,12 +11,13 @@ export async function main(event, context, callback) {
     // - ':userId': defines 'userId' to be Identity Pool identity id
     //   of the authenticated user
     FilterExpression:
-      "userId = :userId AND categoryId = :categoryId AND isActive = true",
+      "userId = :userId AND categoryId = :categoryId AND isActive = :isActive",
     ProjectionExpression:
       "linkId, author, description, image, lang, logo, publisher, title, urlText, video",
     ExpressionAttributeValues: {
       ":userId": event.requestContext.identity.cognitoIdentityId,
-      ":categoryId": event.pathParameters.categoryId
+      ":categoryId": event.pathParameters.categoryId,
+      ":isActive": true
     }
   };
 
