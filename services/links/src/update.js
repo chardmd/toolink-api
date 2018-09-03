@@ -3,6 +3,8 @@ import { success, failure } from "../../../libs/response-lib";
 
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
+
+  console.log(data);
   const params = {
     TableName: process.env.TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be updated
@@ -14,9 +16,9 @@ export async function main(event, context, callback) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET categoryName = :categoryName",
+    UpdateExpression: "SET isActive = :isActive",
     ExpressionAttributeValues: {
-      ":categoryName": data.categoryName ? data.categoryName : null
+      ":isActive": data.isActive
     },
     ReturnValues: "ALL_NEW"
   };
