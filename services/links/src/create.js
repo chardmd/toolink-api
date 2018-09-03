@@ -48,7 +48,7 @@ export async function main(event, context, callback) {
         linkId: uuid.v1(),
         userId: event.requestContext.identity.cognitoIdentityId,
         ...metadata,
-        status: true,
+        isActive: true,
         createdAt: Date.now()
       }
     };
