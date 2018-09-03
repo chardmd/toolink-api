@@ -10,7 +10,8 @@ export async function main(event, context, callback) {
     // 'ExpressionAttributeValues' defines the value in the condition
     // - ':userId': defines 'userId' to be Identity Pool identity id
     //   of the authenticated user
-    FilterExpression: "userId = :userId AND categoryId = :categoryId",
+    FilterExpression:
+      "userId = :userId AND categoryId = :categoryId AND isActive = true",
     ProjectionExpression:
       "linkId, author, description, image, lang, logo, publisher, title, urlText, video",
     ExpressionAttributeValues: {
