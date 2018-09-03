@@ -13,7 +13,7 @@ export async function main(event, context, callback) {
     FilterExpression:
       "userId = :userId AND categoryId = :categoryId AND isActive = :isActive",
     ProjectionExpression:
-      "linkId, author, description, image, lang, logo, publisher, title, urlText, video",
+      "linkId, author, description, image, logo, publisher, title, urlText",
     ExpressionAttributeValues: {
       ":userId": event.requestContext.identity.cognitoIdentityId,
       ":categoryId": event.pathParameters.categoryId,
