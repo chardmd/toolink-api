@@ -13,12 +13,7 @@ const metascraper = require("metascraper")([
   require("metascraper-clearbit-logo")(),
   require("metascraper-publisher")(),
   require("metascraper-title")(),
-  require("metascraper-url")(),
-  require("metascraper-logo-favicon")(),
-  require("metascraper-amazon")(),
-  require("metascraper-youtube")(),
-  require("metascraper-soundcloud")(),
-  require("metascraper-video-provider")()
+  require("metascraper-url")()
 ]);
 
 export async function main(event, context, callback) {
@@ -44,9 +39,7 @@ export async function main(event, context, callback) {
       logo: metadata.logo,
       publisher: metadata.publisher,
       title: metadata.title,
-      urlText: metadata.url,
-      lang: metadata.lang,
-      video: metadata.video
+      urlText: metadata.url
     };
 
     const params = {
@@ -55,6 +48,7 @@ export async function main(event, context, callback) {
         linkId: uuid.v1(),
         userId: event.requestContext.identity.cognitoIdentityId,
         ...metadata,
+        status: true,
         createdAt: Date.now()
       }
     };
