@@ -49,6 +49,7 @@ export async function main(event, context, callback) {
         userId: event.requestContext.identity.cognitoIdentityId,
         ...metadata,
         isActive: true,
+        isFavourite: false,
         createdAt: Date.now()
       }
     };
