@@ -32,6 +32,7 @@ export async function main(event, context, callback) {
     const { body: html, url } = await got(data.url);
     let metadata = await metascraper({ html, url });
     metadata = {
+      linkId: uuid.v1(),
       categoryId: data.categoryId,
       author: metadata.author,
       description: metadata.description,
@@ -39,17 +40,16 @@ export async function main(event, context, callback) {
       logo: metadata.logo,
       publisher: metadata.publisher,
       title: metadata.title,
-      urlText: metadata.url
+      urlText: metadata.url,
+      isActive: true,
+      isFavourite: false
     };
 
     const params = {
       TableName: process.env.TABLE_NAME,
       Item: {
-        linkId: uuid.v1(),
         userId: event.requestContext.identity.cognitoIdentityId,
         ...metadata,
-        isActive: true,
-        isFavourite: false,
         createdAt: Date.now()
       }
     };
