@@ -3,6 +3,21 @@ import { success, failure } from "../../../libs/response-lib";
 
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
+
+  let updateExpression = [];
+  let expressionAttributeValues = {};
+  if (data.isActive !== undefined) {
+    updateExpression = updateExpression.concat("SET isActive = :isActive");
+    expressionAttributeValues[":isActive"] = data.isActive;
+  }
+
+  if (data.isFavourite !== undefined) {
+    updateExpression = updateExpression.concat(
+      "SET isFavourite = :isFavourite"
+    );
+    expressionAttributeValues[":isFavourite"] = data.isFavourite;
+  }
+
   const params = {
     TableName: process.env.TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be updated
@@ -12,13 +27,11 @@ export async function main(event, context, callback) {
       linkId: event.pathParameters.id,
       userId: event.requestContext.identity.cognitoIdentityId
     },
+
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET isActive = :isActive, isFavourite = :isFavourite",
-    ExpressionAttributeValues: {
-      ":isActive": data.isActive ? data.isActive : null,
-      ":isFavourite": data.isFavourite ? data.isFavourite : null
-    },
+    UpdateExpression: updateExpression.toString(),
+    ExpressionAttributeValues: expressionAttributeValues,
     ReturnValues: "ALL_NEW"
   };
 
