@@ -100,14 +100,6 @@ functions:
             method: delete
             cors: true
             authorizer: aws_iam
-  billing:
-    handler: src/billing.main
-    events:
-      - http:
-          path: billing
-          method: post
-          cors: true
-          authorizer: aws_iam
 
 resources:
   Outputs:
