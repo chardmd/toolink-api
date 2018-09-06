@@ -1,4 +1,4 @@
-service: toolink-api-links
+service: toolink-api-trash
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -49,38 +49,41 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /links
+  # - path: url path is /trash
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  create:
-    handler: src/create.main
-    events:
-      - http:
-          path: links
-          method: post
-          cors: true
-          authorizer: aws_iam
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /links
+    # - path: url path is /trash
     # - method: GET request
     handler: src/list.main
     events:
       - http:
-          path: links/categories/{categoryId}
+          path: trash
           method: get
           cors: true
           authorizer: aws_iam
-  update:
-    # Defines an HTTP API endpoint that calls the main function in update.js
-    # - path: url path is /links/{id}
-    # - method: PUT request
-    handler: src/update.main
-    events:
-      - http:
-          path: links/{id}
-          method: put
-          cors: true
-          authorizer: aws_iam
+  delete:
+      # Defines an HTTP API endpoint that calls the main function in delete.js
+      # - path: url path is /links/{id}
+      # - method: DELETE request
+      handler: src/delete.main
+      events:
+        - http:
+            path: trash/{id}
+            method: delete
+            cors: true
+            authorizer: aws_iam
+  deleteAll:
+      # Defines an HTTP API endpoint that calls the main function in delete.js
+      # - path: url path is /trash
+      # - method: DELETE request
+      handler: src/deleteAll.main
+      events:
+        - http:
+            path: trash
+            method: delete
+            cors: true
+            authorizer: aws_iam           

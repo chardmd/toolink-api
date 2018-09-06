@@ -8,4 +8,6 @@ The services have some dependencies and need to be deployed in the following ord
 * uploads
 * categories
 * links
+* favourites
+* trash
 * auth

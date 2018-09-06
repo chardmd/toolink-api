@@ -10,6 +10,10 @@ export async function main(event, context, callback) {
     Key: {
       linkId: event.pathParameters.id,
       userId: event.requestContext.identity.cognitoIdentityId
+    },
+    FilterExpression: "isActive = :isActive",
+    ExpressionAttributeValues: {
+      ":isActive": false
     }
   };
 
