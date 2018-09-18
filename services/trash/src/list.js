@@ -6,7 +6,7 @@ export async function main(event, context, callback) {
     TableName: process.env.TABLE_NAME,
     FilterExpression: "userId = :userId and isActive = :isActive",
     ProjectionExpression:
-      "linkId, author, description, image, logo, publisher, title, urlText, isFavourite",
+      "linkId, author, description, image, logo, publisher, title, urlText, isFavorite",
     ExpressionAttributeValues: {
       ":userId": event.requestContext.identity.cognitoIdentityId,
       ":isActive": false

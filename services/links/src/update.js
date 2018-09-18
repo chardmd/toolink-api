@@ -11,11 +11,9 @@ export async function main(event, context, callback) {
     expressionAttributeValues[":isActive"] = data.isActive;
   }
 
-  if (data.isFavourite !== undefined) {
-    updateExpression = updateExpression.concat(
-      "SET isFavourite = :isFavourite"
-    );
-    expressionAttributeValues[":isFavourite"] = data.isFavourite;
+  if (data.isFavorite !== undefined) {
+    updateExpression = updateExpression.concat("SET isFavorite = :isFavorite");
+    expressionAttributeValues[":isFavorite"] = data.isFavorite;
   }
 
   const params = {

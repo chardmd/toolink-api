@@ -5,12 +5,12 @@ export async function main(event, context, callback) {
   const params = {
     TableName: process.env.TABLE_NAME,
     FilterExpression:
-      "userId = :userId and isActive = :isActive and isFavourite = :isFavourite",
+      "userId = :userId and isActive = :isActive and isFavorite = :isFavorite",
     ProjectionExpression:
-      "linkId, author, description, image, logo, publisher, title, urlText, isFavourite",
+      "linkId, author, description, image, logo, publisher, title, urlText, isFavorite",
     ExpressionAttributeValues: {
       ":userId": event.requestContext.identity.cognitoIdentityId,
-      ":isFavourite": true,
+      ":isFavorite": true,
       ":isActive": true
     }
   };

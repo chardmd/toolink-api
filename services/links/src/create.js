@@ -42,7 +42,7 @@ export async function main(event, context, callback) {
       title: metadata.title,
       urlText: metadata.url,
       isActive: true,
-      isFavourite: false
+      isFavorite: data.isFavorite
     };
 
     const params = {
