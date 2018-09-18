@@ -1,4 +1,4 @@
-service: toolink-api-favourites
+service: toolink-api-favorites
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -49,19 +49,19 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /favourites
+  # - path: url path is /favorites
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /favourites
+    # - path: url path is /favorites
     # - method: GET request
     handler: src/list.main
     events:
       - http:
-          path: favourites
+          path: favorites
           method: get
           cors: true
           authorizer: aws_iam
