@@ -2,7 +2,6 @@ import * as dynamoDbLib from "../../../libs/dynamodb-lib";
 import { success, failure } from "../../../libs/response-lib";
 
 export async function main(event, context, callback) {
-  const data = JSON.parse(event.body);
   try {
     const params = {
       TableName: process.env.TABLE_NAME,
@@ -11,7 +10,7 @@ export async function main(event, context, callback) {
       ProjectionExpression: "linkId",
       ExpressionAttributeValues: {
         ":userId": event.requestContext.identity.cognitoIdentityId,
-        ":categoryId": data.categoryId,
+        ":categoryId": event.pathParameters.categoryId,
         ":isActive": true
       }
     };
