@@ -84,3 +84,14 @@ functions:
           method: put
           cors: true
           authorizer: aws_iam
+  updateByCategory:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /links/{id}
+    # - method: PUT request
+    handler: src/updateByCategory.main
+    events:
+      - http:
+          path: links/categories/{categoryId}
+          method: put
+          cors: true
+          authorizer: aws_iam          
