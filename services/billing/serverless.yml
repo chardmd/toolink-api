@@ -1,4 +1,4 @@
-service: toolink-api-user
+service: toolink-api-billing
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -36,31 +36,31 @@ provider:
     stripeSecretKey: ${self:custom.environment.STRIPE_SECRET_KEY}
 
 functions:
-  # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /billing
+  # Defines an HTTP API endpoint that calls the main function in charge.js
+  # - path: url path is /billing/charge
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  billing:
-      # Defines an HTTP API endpoint that calls the main function in delete.js
-      # - path: url path is /billing
-      # - method: BILLING request
-      handler: src/billing.main
+  charge:
+      # Defines an HTTP API endpoint that calls the main function in charge.js
+      # - path: url path is /billing/charge
+      # - method: charge request
+      handler: src/charge.main
       events:
         - http:
-            path: user/billing
+            path: billing/charge
             method: post
             cors: true
-            authorizer: aws_iam     
+            authorizer: aws_iam
   customer:
       # Defines an HTTP API endpoint that calls the main function in customer.js
-      # - path: url path is /user
+      # - path: url path is /billing/customer
       # - method: customer request
       handler: src/customer.main
       events:
         - http:
-            path: user/customer
+            path: billing/customer
             method: post
             cors: true
             authorizer: aws_iam
