@@ -1,19 +1,15 @@
 import stripePackage from "stripe";
-import * as dynamoDbLib from "../../../libs/dynamodb-lib";
 import { success, failure } from "../../../libs/response-lib";
 
 export async function main(event, context, callback) {
   try {
-    const { source } = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
 
     // Load our secret key from the  environment variables
     const stripe = stripePackage(process.env.stripeSecretKey);
 
-    await stripe.charges.create({
-      source,
-      amount: 1600,
-      description: "billing",
-      currency: "usd"
+    await stripe.customers.create({
+      email: data.email
     });
 
     callback(null, success({ status: true }));
