@@ -14,8 +14,6 @@ export async function main(event, context, callback) {
       plan: data.planId
     });
 
-    console.log({ result });
-
     callback(null, success(result));
   } catch (e) {
     console.error(e);
