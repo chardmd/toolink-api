@@ -9,8 +9,13 @@ export async function main(event, context, callback) {
     // Load our secret key from the  environment variables
     const stripe = stripePackage(process.env.stripeSecretKey);
 
+    const customer = await stripe.customers.create({
+      email: data.email,
+      source // this is used by stripe for creating credit card details
+    });
+
     result = await stripe.subscriptions.create({
-      customer: data.customer,
+      customer: customer.id,
       plan: data.planId
     });
 

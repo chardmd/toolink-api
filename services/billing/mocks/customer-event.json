@@ -1,8 +1,0 @@
-{
-  "body": "{\"email\":\"iamchardmd@gmail.com\"}",
-  "requestContext": {
-    "identity": {
-      "cognitoIdentityId": "us-east-1:1252293b-563b-41b7-9961-943c4b9dcf1c"
-    }
-  }
-}

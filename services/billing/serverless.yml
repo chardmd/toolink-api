@@ -53,17 +53,6 @@ functions:
             method: post
             cors: true
             authorizer: aws_iam
-  customer:
-      # Defines an HTTP API endpoint that calls the main function in customer.js
-      # - path: url path is /billing/customer
-      # - method: customer request
-      handler: src/customer.main
-      events:
-        - http:
-            path: billing/customer
-            method: post
-            cors: true
-            authorizer: aws_iam
   subscription:
     # Defines an HTTP API endpoint that calls the main function in subscription.js
     # - path: url path is /billing/subscription

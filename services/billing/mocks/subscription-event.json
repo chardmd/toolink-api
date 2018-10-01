@@ -1,5 +1,5 @@
 {
-  "body": "{\"customer\":\"cus_DgyoxB1nbVnQpe\", \"planId\": \"plan_DhFH0U4tfPW55q\"}",
+  "body": "{\"email\":\"iamchardmd@gmail.com\", \"planId\": \"plan_DhFH0U4tfPW55q\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "us-east-1:1252293b-563b-41b7-9961-943c4b9dcf1c"
