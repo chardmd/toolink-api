@@ -1,4 +1,5 @@
 import stripePackage from "stripe";
+import * as dynamoDbLib from "../../../libs/dynamodb-lib";
 import { success, failure } from "../../../libs/response-lib";
 
 export async function main(event, context, callback) {
@@ -18,6 +19,17 @@ export async function main(event, context, callback) {
       customer: customer.id,
       plan: data.planId
     });
+
+    //save user details
+    const params = {
+      TableName: process.env.TABLE_NAME,
+      Item: {
+        userId: event.requestContext.identity.cognitoIdentityId,
+        email: data.email,
+        createdAt: Date.now()
+      }
+    };
+    await dynamoDbLib.call("put", params);
 
     callback(null, success(result));
   } catch (e) {
