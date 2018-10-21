@@ -18,6 +18,7 @@ provider:
 
 resources:
   Resources:
+
     # Categories Table
     CategoriesTable:
       Type: AWS::DynamoDB::Table
@@ -38,6 +39,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: ${self:custom.tableThroughput}
           WriteCapacityUnits: ${self:custom.tableThroughput}
+
     # Links Table
     LinksTable:
       Type: AWS::DynamoDB::Table
@@ -57,7 +59,24 @@ resources:
         # Set the capacity based on the stage
         ProvisionedThroughput:
           ReadCapacityUnits: ${self:custom.tableThroughput}
-          WriteCapacityUnits: ${self:custom.tableThroughput}         
+          WriteCapacityUnits: ${self:custom.tableThroughput}  
+
+    # Users Table
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        # Generate a name based on the stage
+        TableName: ${self:custom.stage}-table-users
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        # Set the capacity based on the stage
+        ProvisionedThroughput:
+          ReadCapacityUnits: ${self:custom.tableThroughput}
+          WriteCapacityUnits: ${self:custom.tableThroughput}       
 
   Outputs:
     CategoriesTableArn:
@@ -87,3 +106,17 @@ resources:
         Ref: LinksTable
       Export:
         Name: ${self:custom.stage}-LinksTable
+
+    UsersTableArn:
+      Value:
+         Fn::GetAtt:
+          - UsersTable
+          - Arn
+      Export:
+        Name: ${self:custom.stage}-UsersTableArn
+
+    UsersTableName:
+      Value:
+        Ref: UsersTable
+      Export:
+        Name: ${self:custom.stage}-UsersTable
